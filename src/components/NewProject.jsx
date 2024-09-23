@@ -1,3 +1,4 @@
+import Button from "./Button";
 import Input from "./Input";
 
 export default function NewProject() {
@@ -10,9 +11,7 @@ export default function NewProject() {
           </button>
         </li>
         <li>
-          <button className="py-2 px-4 rounded-md bg-stone-800 text-stone-50 hover:bg-stone-950">
-            Save
-          </button>
+          <Button>Save</Button>
         </li>
       </menu>
       <div>
