@@ -32,9 +32,9 @@ export default function NewProject({ finishProject }) {
         </li>
       </menu>
       <div>
-        <Input ref={title} label="Title" />
+        <Input type="text" ref={title} label="Title" />
         <Input ref={desc} label="Description" textarea />
-        <Input ref={date} label="Due Date" />
+        <Input type="date" ref={date} label="Due Date" />
       </div>
     </div>
   );
