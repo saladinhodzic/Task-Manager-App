@@ -18,12 +18,24 @@ function App() {
     });
   }
 
+  function finishProject(addedProject) {
+    const newProject = { ...addedProject };
+    setMyProjects((prev) => {
+      return {
+        ...prev,
+        projects: [...prev.projects, newProject],
+      };
+    });
+  }
+
+  console.log(myProjects);
+
   let content;
 
   if (myProjects.selectedProject === undefined) {
     content = <Home addNewProject={addNewProject} />;
   } else if (myProjects.selectedProject === null) {
-    content = <NewProject />;
+    content = <NewProject finishProject={finishProject} />;
   }
   return (
     <main className=" h-screen my-8 flex gap-8">
