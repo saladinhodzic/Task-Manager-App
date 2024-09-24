@@ -19,10 +19,11 @@ function App() {
   }
 
   function finishProject(addedProject) {
-    const newProject = { ...addedProject };
+    const newProject = { ...addedProject, id: Math.random() };
     setMyProjects((prev) => {
       return {
         ...prev,
+        selectedProject: undefined,
         projects: [...prev.projects, newProject],
       };
     });
@@ -39,7 +40,7 @@ function App() {
   }
   return (
     <main className=" h-screen my-8 flex gap-8">
-      <Sidebar addNewProject={addNewProject} />
+      <Sidebar projects={myProjects.projects} addNewProject={addNewProject} />
       {content}
     </main>
   );
