@@ -18,6 +18,15 @@ function App() {
     });
   }
 
+  function cancelProject() {
+    setMyProjects((prev) => {
+      return {
+        ...prev,
+        selectedProject: undefined,
+      };
+    });
+  }
+
   function finishProject(addedProject) {
     const newProject = { ...addedProject, id: Math.random() };
     setMyProjects((prev) => {
@@ -36,7 +45,9 @@ function App() {
   if (myProjects.selectedProject === undefined) {
     content = <Home addNewProject={addNewProject} />;
   } else if (myProjects.selectedProject === null) {
-    content = <NewProject finishProject={finishProject} />;
+    content = (
+      <NewProject finishProject={finishProject} onCancel={cancelProject} />
+    );
   }
   return (
     <main className=" h-screen my-8 flex gap-8">
