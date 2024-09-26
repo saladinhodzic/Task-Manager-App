@@ -34,8 +34,10 @@ export default function NewProject({ finishProject }) {
   return (
     <>
       <Modal ref={dialog} buttonCaption="Close">
-        <h2>You entered invalid input.</h2>
-        <p>Please enter a valid input.</p>
+        <h2 className="font-bold  text-stone-600 md:text-xl ">
+          You entered invalid input.
+        </h2>
+        <p className="text-stone-400">Please enter a valid input.</p>
       </Modal>
       <div className="w-[35rem] mt-16">
         <menu className="flex items-center justify-end gap-4 my-4">
