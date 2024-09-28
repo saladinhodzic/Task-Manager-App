@@ -2,6 +2,7 @@ import { useState } from "react";
 import Home from "./components/Home";
 import NewProject from "./components/NewProject";
 import Sidebar from "./components/Sidebar";
+import SelectProject from "./components/SelectProject";
 
 function App() {
   const [myProjects, setMyProjects] = useState({
@@ -14,6 +15,15 @@ function App() {
       return {
         ...prev,
         selectedProject: null,
+      };
+    });
+  }
+
+  function selectProject(id) {
+    setMyProjects((prev) => {
+      return {
+        ...prev,
+        selectedProject: id,
       };
     });
   }
@@ -38,9 +48,11 @@ function App() {
     });
   }
 
-  console.log(myProjects);
+  const selectedProject = myProjects.projects.find(
+    (value) => value.id === myProjects.selectedProject
+  );
 
-  let content;
+  let content = <SelectProject project={selectedProject} />;
 
   if (myProjects.selectedProject === undefined) {
     content = <Home addNewProject={addNewProject} />;
@@ -51,7 +63,11 @@ function App() {
   }
   return (
     <main className=" h-screen my-8 flex gap-8">
-      <Sidebar projects={myProjects.projects} addNewProject={addNewProject} />
+      <Sidebar
+        projects={myProjects.projects}
+        selectProject={selectProject}
+        addNewProject={addNewProject}
+      />
       {content}
     </main>
   );
