@@ -48,11 +48,25 @@ function App() {
     });
   }
 
+  function handleDelete() {
+    setMyProjects((prev) => {
+      return {
+        ...prev,
+        selectedProject: undefined,
+        projects: prev.projects.filter(
+          (project) => project.id !== prev.selectedProject
+        ),
+      };
+    });
+  }
+
   const selectedProject = myProjects.projects.find(
     (value) => value.id === myProjects.selectedProject
   );
 
-  let content = <SelectProject project={selectedProject} />;
+  let content = (
+    <SelectProject project={selectedProject} onDelete={handleDelete} />
+  );
 
   if (myProjects.selectedProject === undefined) {
     content = <Home addNewProject={addNewProject} />;
