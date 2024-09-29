@@ -9,12 +9,17 @@ export default function Tasks({ tasks, onDelete, onAdd }) {
         <p className="text-stone-800 my-4">You have no tasks added.</p>
       )}
       {tasks.length > 0 && (
-        <ul className="bg-stone-200 mt-6">
+        <ul className="bg-stone-100 mt-6 py-8 px-4 rounded-sm flex flex-col ">
           {tasks.map((task) => {
             return (
-              <li className="flex gap-4" key={task.id}>
+              <li className="flex justify-between" key={task.id}>
                 <p>{task.text}</p>
-                <button>Clear</button>
+                <button
+                  onClick={() => onDelete(task.id)}
+                  className="text-stone-600 hover:text-red-600"
+                >
+                  Clear
+                </button>
               </li>
             );
           })}
