@@ -11,18 +11,21 @@ function App() {
     tasks: [],
   });
 
+  const newTasks = myProjects.tasks.filter(
+    (task) => task.projectId === myProjects.selectedProject
+  );
+
   function addTask(text) {
     setMyProjects((prev) => {
       const taskId = Math.random();
       const newTask = {
         text: text,
-        id: taskId,
-        selectedProject: prev.selectedProject,
+        taskId: taskId,
+        projectId: prev.selectedProject,
       };
       return {
         ...prev,
-        selectedProject: prev.selectedProject,
-        tasks: [...prev.tasks, newTask],
+        tasks: [newTask, ...prev.tasks],
       };
     });
   }
@@ -31,7 +34,6 @@ function App() {
     setMyProjects((prev) => {
       return {
         ...prev,
-        selectedProject: prev.selectedProject,
         tasks: prev.tasks.filter((task) => task.id !== id),
       };
     });
@@ -65,8 +67,8 @@ function App() {
   }
 
   function finishProject(addedProject) {
-    const newProject = { ...addedProject, id: Math.random() };
     setMyProjects((prev) => {
+      const newProject = { ...addedProject, id: Math.random() };
       return {
         ...prev,
         selectedProject: undefined,
@@ -93,7 +95,7 @@ function App() {
 
   let content = (
     <SelectProject
-      tasks={myProjects.tasks}
+      tasks={newTasks}
       deleteTask={deleteTask}
       addTask={addTask}
       project={selectedProject}
@@ -114,6 +116,7 @@ function App() {
         projects={myProjects.projects}
         selectProject={selectProject}
         addNewProject={addNewProject}
+        selectedProject={myProjects.selectedProject}
       />
       {content}
     </main>
