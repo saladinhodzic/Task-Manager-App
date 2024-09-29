@@ -21,7 +21,7 @@ function App() {
       };
       return {
         ...prev,
-        selectedProject: undefined,
+        selectedProject: prev.selectedProject,
         tasks: [...prev.tasks, newTask],
       };
     });
